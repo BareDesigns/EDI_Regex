@@ -3,7 +3,7 @@ import os
 
 fileLocation = input('Drop file here (Delete quotations around file name):\n')
 
-os.chdir("DUMMY TEXT")
+os.chdir("G:\Enrollment Management Center\Evaluation Requests\EDIs")
 
 
 class CleanLine:
@@ -22,6 +22,7 @@ class CleanLine:
         self.line = re.sub(r'((\s)([E|I]))$', '', self.line)
         self.line = re.sub(r'((I/F))$', 'F', self.line)
         self.line = re.sub(r'((WF|WQ|FX))$', 'F', self.line)
+        self.line = re.sub(r'((WL))$', 'W', self.line)
         self.line = re.sub(r'^(WBCT).+', '', self.line)
         return self.line
 
@@ -33,7 +34,7 @@ class CleanLine:
     def terms(self):
         '''Changes the term line to a simple *TERM* *YEAR* '''
         if bool(re.search(r'(Mini:)', self.line, re.IGNORECASE)) is True:
-            self.line = re.sub(r'\s*(<<).+', 'MINIMESTER', self)
+            self.line = re.sub(r'\s*(<<).+', 'MINIMESTER', self.line)
             return self.line
 
         elif bool(re.search(r'(Correspondence)',
