@@ -22,7 +22,7 @@ class CleanLine:
         self.line = re.sub(r'((\s)([E|I]))$', '', self.line)
         self.line = re.sub(r'((I/F))$', 'F', self.line)
         self.line = re.sub(r'((WF|WQ|FX))$', 'F', self.line)
-        self.line = re.sub(r'((WL))$', 'W', self.line)
+        self.line = re.sub(r'((WL|WP))$', 'W', self.line)
         self.line = re.sub(r'^(WBCT).+', '', self.line)
         self.line = re.sub(r'(ZZZ)$', 'IP', self.line)
         return self.line
