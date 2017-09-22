@@ -24,6 +24,7 @@ class CleanLine:
         self.line = re.sub(r'((WF|WQ|FX))$', 'F', self.line)
         self.line = re.sub(r'((WL))$', 'W', self.line)
         self.line = re.sub(r'^(WBCT).+', '', self.line)
+        self.line = re.sub(r'(ZZZ)$', 'IP', self.line)
         return self.line
 
     def names(self):
@@ -40,6 +41,11 @@ class CleanLine:
         elif bool(re.search(r'(Correspondence)',
                             self.line, re.IGNORECASE)) is True:
             self.line = re.sub(r'\s*(<<).+', 'CORRESPONDENCE', self.line)
+            return self.line
+
+        elif bool(re.search(r'(Quarter)',
+                            self.line, re.IGNORECASE)) is True:
+            self.line = re.sub(r'\s*(<<).+', 'Quarter', self.line)
             return self.line
 
         elif bool(re.search(r'(Orientation)', self.line,

@@ -43,6 +43,11 @@ class CleanLine:
             self.line = re.sub(r'\s*(<<).+', 'CORRESPONDENCE', self.line)
             return self.line
 
+        elif bool(re.search(r'(Quarter)',
+                            self.line, re.IGNORECASE)) is True:
+            self.line = re.sub(r'\s*(<<).+', 'Quarter', self.line)
+            return self.line
+
         elif bool(re.search(r'(Orientation)', self.line,
                             re.IGNORECASE)) is True:
             self.line = re.sub(r'\s*(<<).+', 'ORIENTATION', self.line)
