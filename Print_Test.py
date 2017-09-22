@@ -1,7 +1,7 @@
 import re
 import os
 
-fileLocation = input('Drop file here (Delete quotations around file name):\n')
+fileLocation = input('Drop file here:\n')
 
 # os.chdir("G:\Enrollment Management Center\Evaluation Requests\EDIs")
 os.chdir("C:/Users/jonng/Documents")
