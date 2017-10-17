@@ -77,7 +77,7 @@ with open(fileLocation, 'r') as transcript:
         new_line = CleanLine(line)
 
         if new_line.line.startswith('G0'):
-            new_doc.write('= ' * 40 + '\n')
+            new_doc.write('= ' * 50 + '\n')
             new_doc.write('\n' + new_line.line + '\n')
 
         elif re.match(r'^((\d){6})', line):
@@ -106,7 +106,7 @@ with open(fileLocation, 'r') as transcript:
             pass
 
 
-new_doc.write('= ' * 40)
+new_doc.write('= ' * 50)
 
 new_doc.close()
 
