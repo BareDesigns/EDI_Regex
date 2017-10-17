@@ -25,6 +25,7 @@ class CleanLine:
         self.line = re.sub(r'((WL|WP))$', 'W', self.line)
         self.line = re.sub(r'^(WBCT).+', '', self.line)
         self.line = re.sub(r'(ZZZ)$', 'IP', self.line)
+        self.line = re.sub(r'(#)(.*)$', 'IP', self.line)
         return self.line
 
     def names(self):
