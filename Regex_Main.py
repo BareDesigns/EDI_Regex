@@ -92,10 +92,11 @@ with open(fileLocation, 'r') as transcript:
         elif new_line.line.startswith('<<'):
             new_doc.write('\n' + new_line.terms() + '\n')
 
-        elif re.search(r'^([A-Z]{1,7})(\s)(\d)', new_line.line):
+        elif re.search(r'^([A-Z]{1,10})(\s)(\d)', new_line.line):
             new_doc.write(new_line.course() + '\n')
 
-        elif re.search(r'^([A-Z]{1})(\s)([A-Z]{1,4})(\s)(\d){1,7}', new_line.line):
+        elif re.search(r'^([A-Z]{1})(\s)([A-Z]{1,4})(\s)(\d){1,7}',
+                       new_line.line):
             new_doc.write(new_line.course() + '\n')
 
         elif new_line.line.startswith('* Inst Qual:'):
@@ -103,6 +104,9 @@ with open(fileLocation, 'r') as transcript:
 
         else:
             pass
+
+
+new_line.write('= ' * 40)
 
 new_doc.close()
 
