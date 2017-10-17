@@ -106,7 +106,7 @@ with open(fileLocation, 'r') as transcript:
             pass
 
 
-new_line.write('= ' * 40)
+new_doc.write('= ' * 40)
 
 new_doc.close()
 
