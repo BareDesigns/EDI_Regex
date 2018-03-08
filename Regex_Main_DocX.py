@@ -3,8 +3,9 @@ import os
 from docx import Document
 
 fileLocation = input('Drop file here (Delete quotations around file name):\n')
-
 os.chdir("G:\Enrollment Management Center\Evaluation Requests\EDIs")
+file_name = input('\n' + 'What would you like to name the new file?:\n')
+document = Document()
 
 
 class CleanLine:
@@ -69,9 +70,6 @@ class CleanLine:
             return self.line
 
 
-file_name = input('\n' + 'What would you like to name the new file?:\n')
-document = Document()
-
 with open(fileLocation, 'r') as transcript:
     data = transcript.readlines()
     for line in data:
@@ -111,6 +109,6 @@ with open(fileLocation, 'r') as transcript:
 
 p.add_run('= ' * 50)
 
-document.save(file_name())
+document.save(file_name + '.docx')
 
 exit = input("Press ENTER to close the program")

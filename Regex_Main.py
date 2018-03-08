@@ -3,7 +3,7 @@ import os
 
 fileLocation = input('Drop file here (Delete quotations around file name):\n')
 
-os.chdir("G:\Enrollment Management Center\Evaluation Requests\EDIs")
+os.chdir("C:/Users/jonng/Documents")
 
 
 class CleanLine:
@@ -69,7 +69,7 @@ class CleanLine:
 
 
 file_name = input('\n' + 'What would you like to name the new file?:\n')
-new_doc = open('{}.txt'.format(file_name), 'w')
+new_doc = Document()
 
 with open(fileLocation, 'r') as transcript:
     data = transcript.readlines()
