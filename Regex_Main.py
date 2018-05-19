@@ -1,9 +1,10 @@
 import re
 import os
+from docx import Document
 
+document = Document("G:\Enrollment Management Center\Graduation\default.docx")
 fileLocation = input('Drop file here (Delete quotations around file name):\n')
-
-os.chdir("C:/Users/jonng/Documents")
+os.chdir("G:\Enrollment Management Center\Evaluation Requests\EDIs")
 
 
 class CleanLine:
@@ -68,9 +69,6 @@ class CleanLine:
             return self.line
 
 
-file_name = input('\n' + 'What would you like to name the new file?:\n')
-new_doc = Document()
-
 with open(fileLocation, 'r') as transcript:
     data = transcript.readlines()
     for line in data:
@@ -78,37 +76,35 @@ with open(fileLocation, 'r') as transcript:
         new_line = CleanLine(line)
 
         if new_line.line.startswith('G0'):
-            new_doc.write('= ' * 50 + '\n')
-            new_doc.write('\n' + new_line.line + '\n')
+            p = document.add_paragraph('= ' * 50 + '\n')
+            p.add_run('\n' + new_line.line + '\n').bold = True
 
         elif re.match(r'^((\d){6})', line):
-            new_doc.write(new_line.line + '\n')
+            p.add_run(new_line.line + '\n').bold = True
 
         elif new_line.line.startswith('AS: '):
-            new_doc.write('\n' + new_line.names())
+            p.add_run('\n' + new_line.names())
 
         elif new_line.line.startswith('Student Name: '):
-            new_doc.write('\n' + new_line.names() + '\n')
+            p.add_run('\n' + new_line.names() + '\n').italic = True
 
         elif new_line.line.startswith('<<'):
-            new_doc.write('\n' + new_line.terms() + '\n')
+            p.add_run('\n' + new_line.terms() + '\n')
 
         elif re.search(r'^([A-Z]{1,10})(\s)(\d)', new_line.line):
-            new_doc.write(new_line.course() + '\n')
+            p.add_run(new_line.course() + '\n')
 
         elif re.search(r'^([A-Z]{1})(\s)([A-Z]{1,4})(\s)(\d){1,7}',
                        new_line.line):
-            new_doc.write(new_line.course() + '\n')
+            p.add_run(new_line.course() + '\n')
 
         elif new_line.line.startswith('* Inst Qual:'):
-            new_doc.write('!!!!!!!!!!!!!!TRANSFER HOURS!!!!!!!!!!!!!!' + '\n')
+            p.add_run('!!!!!!!!!!!!!!TRANSFER HOURS!!!!!!!!!!!!!!' +
+                      '\n').italic = True
 
         else:
             pass
 
-
-new_doc.write('= ' * 50)
-
-new_doc.close()
-
+fileName = input('\nWhat would you like to name the new file?:\n')
+document.save(fileName + '.docx')
 exit = input("Press ENTER to close the program")
