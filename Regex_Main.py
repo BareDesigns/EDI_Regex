@@ -1,4 +1,5 @@
 import re
+import time
 import os
 from docx import Document
 
@@ -107,4 +108,7 @@ with open(fileLocation, 'r') as transcript:
 
 fileName = input('\nWhat would you like to name the new file?:\n')
 document.save(fileName + '.docx')
+print("\nSaving File...")
+# Add loading time for peace of mind
+time.sleep(3)
 exit = input("Press ENTER to close the program")
